@@ -11,9 +11,18 @@ The app should let the user:
 7. Save everything in localStorage.
 8. Show a simple dashboard at the top
  
+ ## What I'll have to use
+ - class
+- constructor
+- methods
+- localStorage
+- array methods
+- dates
+- DOM events
+
    ## What I'll do
-   --
-  *on step:*
+   
+  <ins>*on step:*</ins>
   
   **3**:  when a user saves a habit it should be habit category mark as done btn and a delete btn
   
