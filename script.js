@@ -6,6 +6,7 @@ const totalHabits = document.getElementById("totalHabitsText")
 const habitsCompletedToday = document.getElementById("completedTodayText")
 const totalHabitsCompleted = document.getElementById("totalHabitsCompletedText")
 const error = document.getElementById("error")
+console.log(displayHabit)
 
 function verify(){
   if(habitInput.value === ""){
@@ -20,7 +21,23 @@ function verify(){
     error.textContent = ""
   } 
 }
+function displayHabitsAndCategory(){    
+    let habit = habitInput.value
+    let category = categorySelection.value
+    if(habit !== "" && category !== ""){
+    let habitDisplay = document.createElement("p")
+    let categoryDisplay = document.createElement("p")   
+    habitDisplay.textContent = habit
+    categoryDisplay.textContent = category
+    displayHabit.append(habitDisplay)
+    displayHabit.append(categoryDisplay)
+    deleteBtn()
+    }
+}
+
+
  saveBtn.addEventListener(("click"), () =>{ 
   verify()
+  displayHabitsAndCategory()
  })
   console.log("hi")
