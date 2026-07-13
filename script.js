@@ -7,25 +7,24 @@ const habitsCompletedToday = document.getElementById("completedTodayText")
 const totalHabitsCompleted = document.getElementById("totalHabitsCompletedText")
 const error = document.getElementById("error")
 console.log(displayHabit)
-  
+ let habit;
+ let category; 
 
 function verify(){
   if(habitInput.value === "" || habitInput.value.length < 3){
    error.textContent = "Enter a habit"  
-   return  
-  }else{
-    error.textContent = ""    
+   return false     
   }
   if(categorySelection.value === ""){    
    error.textContent = "Give you're habit a category"
-  }else{
-    error.textContent = ""
+   return false
   } 
+  return true
 }
 
 function displayHabitsAndCategory(){   
-    let habit = habitInput.value
-    let category = categorySelection.value   
+    habit = habitInput.value
+    category = categorySelection.value   
     if(habit !== "" && category !== ""){    
     let habitDisplay = document.createElement("p")
     let categoryDisplay = document.createElement("p")     
@@ -34,7 +33,11 @@ function displayHabitsAndCategory(){
     displayHabit.append(habitDisplay)
     displayHabit.append(categoryDisplay)   
     deleteBtn()
-    checkHabit()
+    checkHabit()   
+   console.log(`${habit} this is habit before clean`)
+    
+    console.log(`${habitInput.value} this is input on display function`)
+    
     }    
 }
 
@@ -53,11 +56,20 @@ function checkHabit(){
     displayHabit.append(checkHabitBtn)
     checkHabitBtn.addEventListener(("click"), () => {
     }) 
-}   
-    
+}  
+ let count = 0
+function countHabit(){  
+  if(habit !== null){
+    count++
+   totalHabits.textContent = count   
+  }  
+}    
  saveBtn.addEventListener(("click"), (e) =>{ 
     e.preventDefault()
-  verify()
+  if (!verify()) return;  
   displayHabitsAndCategory() 
+  countHabit()   
+  console.log(`${habit } this is habit`)
+  console.log(habitInput.value)
  })
-  console.log("hi")
+  
