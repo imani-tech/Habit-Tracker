@@ -32,7 +32,7 @@ function displayHabitsAndCategory(){
     displayHabit.append(habitDisplay)
     displayHabit.append(categoryDisplay)   
     deleteBtn()
-    checkHabit()      
+     checkHabit(habitDisplay)     
     }    
 }
 
@@ -42,14 +42,16 @@ function deleteBtn(){
     deleteBtn.classList.add("trashBtn")
     displayHabit.append(deleteBtn) 
     deleteBtn.addEventListener(("click"), () => {
+
     })   
 }
-function checkHabit(){
+function checkHabit(habitPElement){
     let checkHabitBtn = document.createElement("button")
     checkHabitBtn.innerHTML= `<p><i class="fa-solid fa-check"></i></p>`
     checkHabitBtn.classList.add("checkBtn")
     displayHabit.append(checkHabitBtn)
     checkHabitBtn.addEventListener(("click"), () => {
+    habitPElement.classList.toggle('check')     
     }) 
 }  
  let count = 0

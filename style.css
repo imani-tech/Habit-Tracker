@@ -8,3 +8,8 @@
     color: green;
     border: none;
 }
+.check{
+    text-decoration: line-through;
+    color: rgb(108, 108, 108);
+    font-style: italic;
+}
