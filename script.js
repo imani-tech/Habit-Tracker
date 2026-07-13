@@ -6,7 +6,6 @@ const totalHabits = document.getElementById("totalHabitsText")
 const habitsCompletedToday = document.getElementById("completedTodayText")
 const totalHabitsCompleted = document.getElementById("totalHabitsCompletedText")
 const error = document.getElementById("error")
-console.log(displayHabit)
  let habit;
  let category; 
 
@@ -33,11 +32,7 @@ function displayHabitsAndCategory(){
     displayHabit.append(habitDisplay)
     displayHabit.append(categoryDisplay)   
     deleteBtn()
-    checkHabit()   
-   console.log(`${habit} this is habit before clean`)
-    
-    console.log(`${habitInput.value} this is input on display function`)
-    
+    checkHabit()      
     }    
 }
 
@@ -69,7 +64,6 @@ function countHabit(){
   if (!verify()) return;  
   displayHabitsAndCategory() 
   countHabit()   
-  console.log(`${habit } this is habit`)
-  console.log(habitInput.value)
+  
  })
   
