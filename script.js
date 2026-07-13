@@ -7,37 +7,57 @@ const habitsCompletedToday = document.getElementById("completedTodayText")
 const totalHabitsCompleted = document.getElementById("totalHabitsCompletedText")
 const error = document.getElementById("error")
 console.log(displayHabit)
+  
 
 function verify(){
-  if(habitInput.value === ""){
+  if(habitInput.value === "" || habitInput.value.length < 3){
    error.textContent = "Enter a habit"  
    return  
   }else{
     error.textContent = ""    
   }
   if(categorySelection.value === ""){    
-   error.textContent = "Give your habit a category"
+   error.textContent = "Give you're habit a category"
   }else{
     error.textContent = ""
   } 
 }
-function displayHabitsAndCategory(){    
+
+function displayHabitsAndCategory(){   
     let habit = habitInput.value
-    let category = categorySelection.value
-    if(habit !== "" && category !== ""){
+    let category = categorySelection.value   
+    if(habit !== "" && category !== ""){    
     let habitDisplay = document.createElement("p")
-    let categoryDisplay = document.createElement("p")   
+    let categoryDisplay = document.createElement("p")     
     habitDisplay.textContent = habit
     categoryDisplay.textContent = category
     displayHabit.append(habitDisplay)
-    displayHabit.append(categoryDisplay)
+    displayHabit.append(categoryDisplay)   
     deleteBtn()
-    }
+    checkHabit()
+    }    
 }
 
-
- saveBtn.addEventListener(("click"), () =>{ 
+function deleteBtn(){
+    let deleteBtn = document.createElement("button")
+    deleteBtn.innerHTML= `<p><i class="fa-solid fa-trash"></i></p>`
+    deleteBtn.classList.add("trashBtn")
+    displayHabit.append(deleteBtn) 
+    deleteBtn.addEventListener(("click"), () => {
+    })   
+}
+function checkHabit(){
+    let checkHabitBtn = document.createElement("button")
+    checkHabitBtn.innerHTML= `<p><i class="fa-solid fa-check"></i></p>`
+    checkHabitBtn.classList.add("checkBtn")
+    displayHabit.append(checkHabitBtn)
+    checkHabitBtn.addEventListener(("click"), () => {
+    }) 
+}   
+    
+ saveBtn.addEventListener(("click"), (e) =>{ 
+    e.preventDefault()
   verify()
-  displayHabitsAndCategory()
+  displayHabitsAndCategory() 
  })
   console.log("hi")
