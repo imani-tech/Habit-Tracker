@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/b9cfd8d025.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h1>Habit Tracker</h1>
+    <label for="habit-input"></label>
+    <p>Add habit</p>
+    <input type="text" id="habit-input">
+    <p id="error"></p>
+    <select name="category" id="category">
+        <option value="">Select a category</option>
+        <option value="health">Health</option>
+        <option value="productivity">Productivity</option>
+        <option value="learning">Learning</option>
+        <option value="leisure">Leisure</option>
+        <option value="personal">Personal</option>
+    </select>    
+    <button type="button" id="save-habit">Save</button>
+     <section id="display-habit">
+       
+
+     </section>  
+
+     <div class="dashboard">
+    <p>Total Habits: 
+        <span id="totalHabitsText">0</span>
+    </p>
+    <p>Habits Completed Today: 
+        <span id="HabitscompletedTodayText">0</span>
+    </p>
+    <p>Total Completions: 
+        <span id="totalHabitsCompletedText">0</span>
+    </p>
+</div> 
+
+    <script src="script.js"></script>
+
+
+</body>
+</html>
