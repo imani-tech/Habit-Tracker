@@ -1,0 +1,5 @@
+.completed-habit{
+    text-decoration: line-through;
+    color: rgb(120, 116, 116);
+    font-style: italic;
+}
