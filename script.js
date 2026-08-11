@@ -26,7 +26,7 @@ class Habit{
         this.id = id
         this.name = name
         this.category = category        
-        this.date = date
+        this.date = date        
     }    
 }
 
@@ -50,10 +50,13 @@ saveBtn.addEventListener(("click"), (e) =>{
   if (!verify()) return;     
   const newHabit = new Habit(habitInput.value, categorySelection.value, idNum) 
   habitArray.push(newHabit)
+  // LocalStorage  --SAVE habitArray to localStorage
+localStorage.setItem("habits", JSON.stringify(habitArray))
+
   displayHabitsAndCategory();  
   console.log(habitArray)
   countHabit()
-  idNum++  
+  idNum++   
  })
 
 function deleteBtn(habit){
@@ -70,7 +73,6 @@ function deleteBtn(habit){
       countHabit()      
     })   
 }
-
 function checkHabit(nameP, categoryP){
     let checkBox = document.createElement("input")    
     checkBox.type = "checkbox"
@@ -101,3 +103,11 @@ console.log(todayName);
 displayHabit.append(todayName)
 }
 
+//get whats inside local storage
+let savedHabit = localStorage.getItem("habits")
+if(savedHabit === null){
+    habitArray = []
+}else{
+   habitArray = JSON.parse(savedHabit)
+   displayHabitsAndCategory()
+}
