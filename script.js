@@ -22,12 +22,16 @@ function verify(){
   return true
 }
 class Habit{
-    constructor(name, category, id, date){
+    constructor(name, category, id, date, isComplete){
         this.id = id
         this.name = name
         this.category = category        
-        this.date = date        
-    }    
+        this.date = date  
+        this.isComplete = isComplete     
+    }   
+    toggleCompleted() {
+    this.isCompleted = !this.isCompleted
+} 
 }
 
 function displayHabitsAndCategory(){    
@@ -42,6 +46,7 @@ function displayHabitsAndCategory(){
     date()
     checkHabit(nameP, categoryP)       
     deleteBtn(habit)      
+    checkHabit(habit)  
    })   
 } 
 
@@ -53,8 +58,7 @@ saveBtn.addEventListener(("click"), (e) =>{
   // LocalStorage  --SAVE habitArray to localStorage
 localStorage.setItem("habits", JSON.stringify(habitArray))
 
-  displayHabitsAndCategory();  
-  console.log(habitArray)
+  displayHabitsAndCategory();    
   countHabit()
   idNum++   
  })
@@ -65,42 +69,40 @@ function deleteBtn(habit){
     deleteBtn.classList.add("trashBtn")
     displayHabit.append(deleteBtn) 
     deleteBtn.addEventListener(("click"), () => {
-        let habitObjId = habit.id
-        const habitResultArray = habitArray.filter((habit) => habitObjId !== habit.id)
-      console.log(habitResultArray)
+      let habitObjId = habit.id
+      const habitResultArray = habitArray.filter((habit) => habitObjId !== habit.id)      
       habitArray = habitResultArray     
       displayHabitsAndCategory()
-      countHabit()      
+      countHabit() 
+        
     })   
 }
-function checkHabit(nameP, categoryP){
+function checkHabit(habit,nameP, categoryP){
     let checkBox = document.createElement("input")    
     checkBox.type = "checkbox"
-    displayHabit.append(checkBox)
-    checkBox.addEventListener(("click"), () => {        
+    displayHabit.append(checkBox)   
+    checkBox.addEventListener(("click"), () => {    
+      habit.toggleCompleted()    
     nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")      
-    
+    localStorage.setItem("habits", JSON.stringify(habitArray))
     }) 
-    checkIfHabitCompleted = false;
+    
 } 
    
-function countCompletedHabit(checkIfHabitCompleted){   
-    let complete = 0    
-    totalHabitsCompleted.textContent = 0   
+function countCompletedHabit(){   
+    
 }
   function countHabit(){
     let num = habitArray.length
-    totalHabits.textContent = num
-    console.log("number of habits"+ " "+ num)
+    totalHabits.textContent = num    
 } 
 function date(){
 const today = new Date();
 const dayNum = today.getDay();
 const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const todayName = days[dayNum];
-console.log(todayName);
-displayHabit.append(todayName)
+displayHabit.append(todayName);
 }
 
 //get whats inside local storage
