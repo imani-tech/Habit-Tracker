@@ -79,14 +79,18 @@ function deleteBtn(habit){
 function checkHabit(habit,nameP, categoryP){
     let checkBox = document.createElement("input")    
     checkBox.type = "checkbox"
-    displayHabit.append(checkBox)   
+    displayHabit.append(checkBox)
+    if(habit.isCompleted ===true){
+      nameP.classList.toggle("completed-habit")
+    categoryP.classList.toggle("completed-habit")  
+     checkBox.checked = true
+        }
     checkBox.addEventListener(("click"), () => {    
     habit.toggleCompleted()    
     nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")      
     localStorage.setItem("habits", JSON.stringify(habitArray))
-    countCompletedHabit()
-     
+    countCompletedHabit()     
     }) 
     
 } 
@@ -94,8 +98,7 @@ let numberOfCompletedHabits = 0
 function countCompletedHabit(){    
   let result =  habitArray.filter((eachHabit) => eachHabit.isCompleted === true)
   numberOfCompletedHabits = result.length
-  totalHabitsCompleted.textContent = numberOfCompletedHabits
-  console.log()
+  totalHabitsCompleted.textContent = numberOfCompletedHabits  
 }
   function countHabit(){
     let num = habitArray.length
@@ -116,5 +119,6 @@ if(savedHabit === null){
 }else{
    habitArray = JSON.parse(savedHabit)
    displayHabitsAndCategory()
-   countHabit()
+   countHabit()      
+   countCompletedHabit()
 }
