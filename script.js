@@ -70,10 +70,11 @@ function deleteBtn(habit){
     deleteBtn.addEventListener(("click"), () => {
       let habitObjId = habit.id
       const habitResultArray = habitArray.filter((habit) => habitObjId !== habit.id)      
-      habitArray = habitResultArray     
+      habitArray = habitResultArray 
+      localStorage.setItem("habits", JSON.stringify(habitArray))
       displayHabitsAndCategory()
       countHabit() 
-        
+      countCompletedHabit()  
     })   
 }
 function checkHabit(habit,nameP, categoryP){
@@ -120,5 +121,5 @@ if(savedHabit === null){
    habitArray = JSON.parse(savedHabit)
    displayHabitsAndCategory()
    countHabit()      
-   countCompletedHabit()
+   countCompletedHabit()   
 }
