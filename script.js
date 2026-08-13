@@ -45,10 +45,8 @@ function displayHabitsAndCategory(){
     displayHabit.append(categoryP)    
     date()
     checkHabit(habit,nameP, categoryP)       
-    deleteBtn(habit)    
-    countCompletedHabit(habit)
-    
-   })   
+    deleteBtn(habit)      
+   })      
 } 
 
 saveBtn.addEventListener(("click"), (e) =>{ 
@@ -87,14 +85,17 @@ function checkHabit(habit,nameP, categoryP){
     nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")      
     localStorage.setItem("habits", JSON.stringify(habitArray))
-    
+    countCompletedHabit()
      
     }) 
     
 } 
-   
-function countCompletedHabit(habit){    
-    
+let numberOfCompletedHabits = 0
+function countCompletedHabit(){    
+  let result =  habitArray.filter((eachHabit) => eachHabit.isCompleted === true)
+  numberOfCompletedHabits = result.length
+  totalHabitsCompleted.textContent = numberOfCompletedHabits
+  console.log()
 }
   function countHabit(){
     let num = habitArray.length
