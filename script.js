@@ -22,12 +22,12 @@ function verify(){
   return true
 }
 class Habit{
-    constructor(name, category, id, date, isComplete){
+    constructor(name, category, id, date, isCompleted){
         this.id = id
         this.name = name
         this.category = category        
         this.date = date  
-        this.isComplete = isComplete     
+        this.isCompleted = isCompleted     
     }   
     toggleCompleted() {
     this.isCompleted = !this.isCompleted
@@ -36,7 +36,7 @@ class Habit{
 
 function displayHabitsAndCategory(){    
     displayHabit.textContent = ""
-   habitArray.forEach((habit) => {
+    habitArray.forEach((habit) => {
     let nameP = document.createElement("p")
     nameP.textContent = habit.name
     let categoryP = document.createElement("p")
@@ -44,23 +44,24 @@ function displayHabitsAndCategory(){
     displayHabit.append(nameP)
     displayHabit.append(categoryP)    
     date()
-    checkHabit(nameP, categoryP)       
-    deleteBtn(habit)      
-    checkHabit(habit)  
+    checkHabit(habit,nameP, categoryP)       
+    deleteBtn(habit)    
+    countCompletedHabit(habit)
+    
    })   
 } 
 
 saveBtn.addEventListener(("click"), (e) =>{ 
    e.preventDefault()
   if (!verify()) return;     
-  const newHabit = new Habit(habitInput.value, categorySelection.value, idNum) 
+  const newHabit = new Habit(habitInput.value, categorySelection.value, idNum, ) 
   habitArray.push(newHabit)
   // LocalStorage  --SAVE habitArray to localStorage
 localStorage.setItem("habits", JSON.stringify(habitArray))
-
+console.log(habitArray)
   displayHabitsAndCategory();    
   countHabit()
-  idNum++   
+  idNum++  
  })
 
 function deleteBtn(habit){
@@ -82,15 +83,17 @@ function checkHabit(habit,nameP, categoryP){
     checkBox.type = "checkbox"
     displayHabit.append(checkBox)   
     checkBox.addEventListener(("click"), () => {    
-      habit.toggleCompleted()    
+    habit.toggleCompleted()    
     nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")      
     localStorage.setItem("habits", JSON.stringify(habitArray))
+    
+     
     }) 
     
 } 
    
-function countCompletedHabit(){   
+function countCompletedHabit(habit){    
     
 }
   function countHabit(){
@@ -112,4 +115,5 @@ if(savedHabit === null){
 }else{
    habitArray = JSON.parse(savedHabit)
    displayHabitsAndCategory()
+   countHabit()
 }
