@@ -33,7 +33,7 @@ class Habit{
     this.isCompleted = !this.isCompleted
 } 
 }
-
+let biggestIdNum;
 function displayHabitsAndCategory(){    
     displayHabit.textContent = ""
     habitArray.forEach((habit) => {
@@ -45,7 +45,7 @@ function displayHabitsAndCategory(){
     displayHabit.append(categoryP)    
     date()
     checkHabit(habit,nameP, categoryP)       
-    deleteBtn(habit)      
+    deleteBtn(habit)    
    })      
 } 
 
@@ -56,10 +56,12 @@ saveBtn.addEventListener(("click"), (e) =>{
   habitArray.push(newHabit)
   // LocalStorage  --SAVE habitArray to localStorage
 localStorage.setItem("habits", JSON.stringify(habitArray))
-console.log(habitArray)
+
   displayHabitsAndCategory();    
   countHabit()
-  idNum++  
+  idNum++ 
+  console.log(idNum)
+  console.log(habitArray)
  })
 
 function deleteBtn(habit){
@@ -104,7 +106,14 @@ function countCompletedHabit(){
   function countHabit(){
     let num = habitArray.length
     totalHabits.textContent = num    
-} 
+}
+
+function biggestId(){
+ let allIds = habitArray.map((h)=> h.id)
+ biggestIdNum = Math.max(...allIds) 
+ idNum = biggestIdNum + 1
+}
+
 function date(){
 const today = new Date();
 const dayNum = today.getDay();
@@ -122,4 +131,5 @@ if(savedHabit === null){
    displayHabitsAndCategory()
    countHabit()      
    countCompletedHabit()   
+   biggestId()
 }
