@@ -1,3 +1,42 @@
+body{
+    background-color: #f3f3f3;
+   font-family: "Roboto Condensed", sans-serif;
+}
+.whole-page{   
+   width: 80%;
+    margin: 0 auto;   
+    background-color: #fefefe;    
+    border-radius: 20px;
+    
+}
+.below{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.header{
+    background: #EFF7EF;
+    background: linear-gradient(90deg, rgba(222, 238, 222, 1) 2%,rgba(243, 251, 243, 255) 51%,rgba(244, 250, 244, 1) 62%,rgba(244, 249, 244, 255) 74%,rgba(241, 247, 240, 255) 83%,rgba(248, 251, 248, 1) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Playfair Display", serif; 
+}
+
+.quotes{
+    display: flex;
+    align-items: flex-start;
+    justify-content:flex-start;
+    gap: 10px;
+    margin: 0 20px;
+    background: #EFF7EF;
+    background: linear-gradient(90deg, rgba(222, 238, 222, 1) 2%,rgba(243, 251, 243, 255) 51%,rgba(244, 250, 244, 1) 62%,rgba(244, 249, 244, 255) 74%,rgba(241, 247, 240, 255) 83%,rgba(248, 251, 248, 1) 100%);
+    margin-top: 10px;
+    padding: 2px;
+    border-radius: 20px;
+    letter-spacing: 3px;    
+    font-family: "Roboto Condensed", sans-serif;
+}
+
 .completed-habit{
     text-decoration: line-through;
     color: rgb(120, 116, 116);
