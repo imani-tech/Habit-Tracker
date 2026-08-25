@@ -48,9 +48,14 @@ function displayHabitsAndCategory(){
     deleteBtn(habit)    
    })      
 } 
+function clear(){
+  habitInput.value = ""
+  categorySelection.value = ""
+}
 
 saveBtn.addEventListener(("click"), (e) =>{ 
    e.preventDefault()
+ 
   if (!verify()) return;     
   const newHabit = new Habit(habitInput.value, categorySelection.value, idNum, ) 
   habitArray.push(newHabit)
@@ -60,6 +65,7 @@ localStorage.setItem("habits", JSON.stringify(habitArray))
   displayHabitsAndCategory();    
   countHabit()
   idNum++ 
+    clear()
   console.log(idNum)
   console.log(habitArray)
  })
