@@ -107,6 +107,9 @@ transform: translateY(4px);
     background-color: #f8f8f8;  
     display: grid;
     grid-template-columns: 1fr auto;
+    padding-bottom: 10px;
+  padding-top: 10px;
+  border-radius: 15px 15px 5px 5px;
 }
 .habit-info-wrapper{
  
@@ -137,4 +140,14 @@ transform: translateY(4px);
 }
 .small-style{
     margin-right: 10px;
+}
+.fa-calendar{
+    font-size: 25px;
+    color: #194a02;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.today-date-style{
+    font-size: large;
+   
 }

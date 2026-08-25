@@ -50,7 +50,7 @@ function displayHabitsAndCategory(){
     let categoryP = document.createElement("p")
     categoryP.textContent = habit.category
     let todaysdate = document.createElement('p')
-    todaysdate.textContent = habit.date
+    todaysdate.textContent = habit.date    
     displayHabit.append(nameP)
     displayHabit.append(categoryP) 
     displayHabit.append(todaysdate)           
@@ -160,7 +160,8 @@ let montharray = [
 ]
 let fullMonth = montharray[month]
 let year = today.getFullYear()
-let format = `${fullMonth} ${date} ${year}`
+let format = `${fullMonth} ${date}, ${year}`
 TodayDate.textContent = format
+TodayDate.classList.add("today-date-style")
 }
 displayCalender()
