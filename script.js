@@ -22,18 +22,25 @@ function verify(){
   return true
 }
 class Habit{
-    constructor(name, category, id, date, isCompleted){
+    constructor(name, category, id, isCompleted){
         this.id = id
         this.name = name
-        this.category = category        
-        this.date = date  
+        this.category = category  
+       
         this.isCompleted = isCompleted     
+         const today = new Date();
+      const dayNum = today.getDay();
+      const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+      const todayName = days[dayNum];
+      this.date = todayName
     }   
     toggleCompleted() {
     this.isCompleted = !this.isCompleted
-} 
+    } 
+    
 }
 let biggestIdNum;
+
 function displayHabitsAndCategory(){    
     displayHabit.textContent = ""
     habitArray.forEach((habit) => {
@@ -41,9 +48,11 @@ function displayHabitsAndCategory(){
     nameP.textContent = habit.name
     let categoryP = document.createElement("p")
     categoryP.textContent = habit.category
+    let todaysdate = document.createElement('p')
+    todaysdate.textContent = habit.date
     displayHabit.append(nameP)
-    displayHabit.append(categoryP)    
-    date()
+    displayHabit.append(categoryP) 
+    displayHabit.append(todaysdate)           
     checkHabit(habit,nameP, categoryP)       
     deleteBtn(habit)    
    })      
@@ -54,10 +63,9 @@ function clear(){
 }
 
 saveBtn.addEventListener(("click"), (e) =>{ 
-   e.preventDefault()
- 
+   e.preventDefault() 
   if (!verify()) return;     
-  const newHabit = new Habit(habitInput.value, categorySelection.value, idNum, ) 
+  const newHabit = new Habit(habitInput.value, categorySelection.value, idNum) 
   habitArray.push(newHabit)
   // LocalStorage  --SAVE habitArray to localStorage
 localStorage.setItem("habits", JSON.stringify(habitArray))
@@ -118,14 +126,6 @@ function biggestId(){
  let allIds = habitArray.map((h)=> h.id)
  biggestIdNum = Math.max(...allIds) 
  idNum = biggestIdNum + 1
-}
-
-function date(){
-const today = new Date();
-const dayNum = today.getDay();
-const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-const todayName = days[dayNum];
-displayHabit.append(todayName);
 }
 
 //get whats inside local storage
