@@ -6,6 +6,8 @@ const totalHabits = document.getElementById("totalHabitsText")
 const habitsCompletedToday = document.getElementById("completedTodayText")
 const totalHabitsCompleted = document.getElementById("totalHabitsCompletedText")
 const error = document.getElementById("error")
+const TodayDate = document.getElementById("today-date")
+
 let idNum = 0
 let habitArray = []  
 
@@ -25,14 +27,13 @@ class Habit{
     constructor(name, category, id, isCompleted){
         this.id = id
         this.name = name
-        this.category = category  
-       
+        this.category = category         
         this.isCompleted = isCompleted     
-         const today = new Date();
-      const dayNum = today.getDay();
-      const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-      const todayName = days[dayNum];
-      this.date = todayName
+        const today = new Date();
+        const dayNum = today.getDay();
+        const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+        const todayName = days[dayNum];
+        this.date = todayName
     }   
     toggleCompleted() {
     this.isCompleted = !this.isCompleted
@@ -139,3 +140,27 @@ if(savedHabit === null){
    countCompletedHabit()   
    biggestId()
 }
+function displayCalender(){
+  let today = new Date()
+let date = today.getDay()
+let month = today.getMonth()
+let montharray = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+]
+let fullMonth = montharray[month]
+let year = today.getFullYear()
+let format = `${fullMonth} ${date} ${year}`
+TodayDate.textContent = format
+}
+displayCalender()
