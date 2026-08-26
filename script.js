@@ -50,12 +50,14 @@ function displayHabitsAndCategory(){
     let categoryP = document.createElement("p")
     categoryP.textContent = habit.category
     let todaysdate = document.createElement('p')
-    todaysdate.textContent = habit.date    
-    displayHabit.append(nameP)
-    displayHabit.append(categoryP) 
-    displayHabit.append(todaysdate)           
-    checkHabit(habit,nameP, categoryP)       
-    deleteBtn(habit)    
+    todaysdate.textContent = habit.date  
+    let habitContainer = document.createElement("div") 
+    habitContainer.append(nameP) 
+    habitContainer.append(categoryP)
+    habitContainer.append(todaysdate)
+    displayHabit.append(habitContainer)         
+    checkHabit(habit,nameP, categoryP, habitContainer)       
+    deleteBtn(habit, habitContainer)    
    })      
 } 
 function clear(){
@@ -70,7 +72,6 @@ saveBtn.addEventListener(("click"), (e) =>{
   habitArray.push(newHabit)
   // LocalStorage  --SAVE habitArray to localStorage
 localStorage.setItem("habits", JSON.stringify(habitArray))
-
   displayHabitsAndCategory();    
   countHabit()
   idNum++ 
@@ -79,11 +80,11 @@ localStorage.setItem("habits", JSON.stringify(habitArray))
   console.log(habitArray)
  })
 
-function deleteBtn(habit){
+function deleteBtn(habit, habitContainer){
     let deleteBtn = document.createElement("button")
     deleteBtn.innerHTML= `<p><i class="fa-solid fa-trash"></i></p>`
     deleteBtn.classList.add("trashBtn")
-    displayHabit.append(deleteBtn) 
+    habitContainer.append(deleteBtn) 
     deleteBtn.addEventListener(("click"), () => {
       let habitObjId = habit.id
       const habitResultArray = habitArray.filter((habit) => habitObjId !== habit.id)      
@@ -94,10 +95,10 @@ function deleteBtn(habit){
       countCompletedHabit()  
     })   
 }
-function checkHabit(habit,nameP, categoryP){
+function checkHabit(habit,nameP, categoryP, habitContainer){
     let checkBox = document.createElement("input")    
     checkBox.type = "checkbox"
-    displayHabit.append(checkBox)
+    habitContainer.append(checkBox)
     if(habit.isCompleted ===true){
       nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")  

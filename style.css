@@ -129,7 +129,10 @@ transform: translateY(4px);
    border-radius: 10px;
    background-color: #ece3fd;
 }
-
+.middle{
+   border: 2px solid #eeeff1;
+   border-radius: 15px 15px 0 0;
+}
 .habit-info {
     display: grid;
     grid-template-rows: auto auto;
@@ -150,4 +153,27 @@ transform: translateY(4px);
 .today-date-style{
     font-size: large;
    
+}
+#display-habit {
+    display: flex;
+    flex-direction: column;
+   padding: 10px;
+   gap: 10px;
+}
+
+#display-habit div {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+}
+#display-habit input{
+    font-size: large;
+}
+#display-habit button{
+    background-color: transparent;
+    border: none;
+}
+#display-habit i{
+    color: red;
 }
