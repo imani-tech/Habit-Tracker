@@ -126,8 +126,12 @@ function countCompletedHabit(){
     let num = habitArray.length
     totalHabits.textContent = num    
 }
-
+  
 function biggestId(){
+  if (habitArray.length === 0) {
+        idNum = 0;
+        return;
+    }
  let allIds = habitArray.map((h)=> h.id)
  biggestIdNum = Math.max(...allIds) 
  idNum = biggestIdNum + 1
