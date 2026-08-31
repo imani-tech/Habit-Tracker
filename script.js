@@ -24,16 +24,19 @@ function verify(){
   return true
 }
 class Habit{
-    constructor(name, category, id, isCompleted){
+    constructor(name, category, id, isCompleted, date){
         this.id = id
         this.name = name
         this.category = category         
-        this.isCompleted = isCompleted     
+        this.isCompleted = isCompleted  
+         this.date = date         
         const today = new Date();
         const dayNum = today.getDay();
         const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
         const todayName = days[dayNum];
-        this.date = todayName
+      if(date === undefined){
+        date = todayName
+      }
     }   
     toggleCompleted() {
     this.isCompleted = !this.isCompleted
@@ -136,11 +139,18 @@ if(savedHabit === null){
     habitArray = []
 }else{
    habitArray = JSON.parse(savedHabit)
+   const restoredHabits = habitArray.map(habit =>{
+  const restoreHabit = new Habit(habit.name, habit.category,habit.id, habit.isCompleted, habit.date)
+  return restoreHabit
+     })
+     habitArray=restoredHabits
    displayHabitsAndCategory()
    countHabit()      
    countCompletedHabit()   
    biggestId()
+  
 }
+
 function displayCalender(){
   let today = new Date()
 let date = today.getDay()
