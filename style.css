@@ -177,3 +177,22 @@ transform: translateY(4px);
 #display-habit i{
     color: red;
 }
+.last-quote{
+    margin-top: 10px;       
+    border-radius: 20px; 
+    background-color: rgb(205, 240, 205);
+    border: 1px solid #7adc4c;
+    color: #3c3838;
+    text-align: calc(20-10);
+    display: flex;
+    width:70em;
+    position: relative;
+    left:30px;
+    align-items: center;
+    justify-content: center;   
+}
+.last-quote p{
+ letter-spacing: 2px;
+ font-size: larger;
+ margin: 0;
+}
