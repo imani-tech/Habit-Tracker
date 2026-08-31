@@ -58,10 +58,14 @@ body{
    display: flex;
    gap: 10px; 
 }
+.habit-inputs input{
+    border-radius: 10px;
+}
 #habit-input, #category{
   width: 40%;
   border: 2px solid #eeeff1;
    font-size: 15px;
+   
 }
 #category{
     background-color: #fefefe;
@@ -195,4 +199,36 @@ transform: translateY(4px);
  letter-spacing: 2px;
  font-size: larger;
  margin: 0;
+}
+
+@media screen and (max-width: 767px){
+    body{
+        background-color: #fefefe;
+        margin: 0;
+    }
+    .whole-page{
+        margin: 0;
+      width: auto;
+    }
+    header{
+        width: 100px;
+        margin: 0;
+    }
+    .last-quote{
+        width: auto;
+        position: relative;
+        left: 0;
+    }
+    .habit-inputs{
+        gap:5px;
+    }
+    #save-habit{
+        margin: 0;
+    }
+    #category{
+        font-size: 14px;
+    }
+    .fa-calendar{
+        font-size:18px;
+    }
 }
