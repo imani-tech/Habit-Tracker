@@ -28,15 +28,13 @@ class Habit{
         this.id = id
         this.name = name
         this.category = category         
-        this.isCompleted = isCompleted  
-         this.date = date         
+        this.isCompleted = isCompleted                 
         const today = new Date();
         const dayNum = today.getDay();
         const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
         const todayName = days[dayNum];
-      if(date === undefined){
-        date = todayName
-      }
+         this.date = date || days[today.getDay()] 
+     
     }   
     toggleCompleted() {
     this.isCompleted = !this.isCompleted
@@ -157,7 +155,7 @@ if(savedHabit === null){
 
 function displayCalender(){
   let today = new Date()
-let date = today.getDay()
+let date = today.getDate()
 let month = today.getMonth()
 let montharray = [
   "January",
