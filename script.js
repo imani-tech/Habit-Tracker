@@ -24,16 +24,18 @@ function verify(){
   return true
 }
 class Habit{
-    constructor(name, category, id, isCompleted, date){
+    constructor(name, category, id, isCompleted, date, day){
         this.id = id
         this.name = name
         this.category = category         
         this.isCompleted = isCompleted                 
         const today = new Date();
+        const habitsDateFormat = `${today.getDate()}, ${today.getMonth()}, ${today.getFullYear()}`       
         const dayNum = today.getDay();
         const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
         const todayName = days[dayNum];
-         this.date = date || days[today.getDay()] 
+        this.date = date || habitsDateFormat
+        this.day = day || days[dayNum]         
      
     }   
     toggleCompleted() {
@@ -51,7 +53,7 @@ function displayHabitsAndCategory(){
     let categoryP = document.createElement("p")
     categoryP.textContent = habit.category
     let todaysdate = document.createElement('p')
-    todaysdate.textContent = habit.date  
+    todaysdate.textContent = habit.day  
     let habitContainer = document.createElement("div") 
     habitContainer.append(nameP) 
     habitContainer.append(categoryP)
@@ -59,7 +61,8 @@ function displayHabitsAndCategory(){
     displayHabit.append(habitContainer)         
     checkHabit(habit,nameP, categoryP, habitContainer)       
     deleteBtn(habit, habitContainer)    
-   })      
+   }) 
+   completedTodayHabits()     
 } 
 function clear(){
   habitInput.value = ""
@@ -79,6 +82,7 @@ localStorage.setItem("habits", JSON.stringify(habitArray))
     clear()
   console.log(idNum)
   console.log(habitArray)
+ 
  })
 
 function deleteBtn(habit, habitContainer){
@@ -102,15 +106,17 @@ function checkHabit(habit,nameP, categoryP, habitContainer){
     habitContainer.append(checkBox)
     if(habit.isCompleted ===true){
       nameP.classList.toggle("completed-habit")
-    categoryP.classList.toggle("completed-habit")  
-     checkBox.checked = true
+      categoryP.classList.toggle("completed-habit")  
+      checkBox.checked = true
+      
         }
     checkBox.addEventListener(("click"), () => {    
     habit.toggleCompleted()    
     nameP.classList.toggle("completed-habit")
     categoryP.classList.toggle("completed-habit")      
     localStorage.setItem("habits", JSON.stringify(habitArray))
-    countCompletedHabit()     
+    countCompletedHabit() 
+    completedTodayHabits(habit)   
     }) 
     
 } 
@@ -142,7 +148,7 @@ if(savedHabit === null){
 }else{
    habitArray = JSON.parse(savedHabit)
    const restoredHabits = habitArray.map(habit =>{
-  const restoreHabit = new Habit(habit.name, habit.category,habit.id, habit.isCompleted, habit.date)
+  const restoreHabit = new Habit(habit.name, habit.category,habit.id, habit.isCompleted, habit.date, habit.day)
   return restoreHabit
      })
      habitArray=restoredHabits
@@ -178,3 +184,17 @@ TodayDate.textContent = format
 TodayDate.classList.add("today-date-style")
 }
 displayCalender()
+function completedTodayHabits(){
+
+    let today = new Date()
+
+    let todayDateFormat =
+        `${today.getDate()}, ${today.getMonth()}, ${today.getFullYear()}`
+
+    let completedToday = habitArray.filter((habit) => {
+        return habit.isCompleted === true &&
+               habit.date === todayDateFormat
+    })
+
+    habitsCompletedToday.textContent = completedToday.length
+}

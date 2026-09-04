@@ -171,8 +171,8 @@ transform: translateY(4px);
     align-items: center;
     gap: 20px;
 }
-#display-habit input{
-    font-size: large;
+#display-habit input:hover{
+    cursor: pointer;
 }
 #display-habit button{
     background-color: transparent;
@@ -180,6 +180,9 @@ transform: translateY(4px);
 }
 #display-habit i{
     color: red;
+}
+#display-habit i:hover{
+    cursor: pointer;
 }
 .last-quote{
     margin-top: 10px;       
